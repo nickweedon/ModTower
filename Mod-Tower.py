@@ -25,7 +25,7 @@ def get_gcode_for_line(layer_number, config):
             continue
         if (layer_number - starting_at) % for_every == 0:
             occurance = (layer_number - starting_at) / for_every
-            current_value = every_config["value"]["start"] + (every_config["value"]["increment"] * occurance)
+            current_value = round(every_config["value"]["start"] + (every_config["value"]["increment"] * occurance), 4)
             gcode_line = every_config["do"].format(value=current_value)
             gcode_for_line.append(gcode_line)
             

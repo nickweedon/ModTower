@@ -1,0 +1,22 @@
+
+# From Extensions -> Part for Calibration -> Add Retract Tower
+# Scaled to %150
+everyLayer:
+  - startingAt: 3
+    forEvery: 39
+    #do: M900 K{value} ;Set linear advance
+    do: |-
+     M117 Level: {level}, Flow: {value}%
+     M221 S{value} ;Set flow percentage
+    value:
+      # Can be one of:
+      # high: For uneven level count, set the midpoint higher
+      # low: For uneven level count, set the midpoint lower
+      # off (default): No midpoint, start applying increment from the bottom
+      midpointSetting: off
+      start: 100
+      increment: -5
+atLayer:
+  #0: M900 K0.035 ;Set linear advance
+  0: M221 S100 ;Set flow percentage
+  

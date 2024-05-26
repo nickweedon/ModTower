@@ -1,0 +1,39 @@
+
+# From Extensions -> Part for Calibration -> Add Retract Tower
+# Scaled to %150
+everyLayer:
+  - startingAt: 2
+    forEvery: 1
+    do: |-
+     M117 Lvl:{level} => {value}
+     M201 X{value} Y{value} ; Acceleration Test
+    value:
+    # Can be one of:
+      # high: For uneven level count, set the midpoint higher
+      # low: For uneven level count, set the midpoint lower
+      # off (default): No midpoint, start applying increment from the bottom
+      midpointSetting: "off"
+      start: 1500
+
+      # Use 'increment' to add/subtract at each level (mutually exclusive with 'end')
+      #increment: 1
+
+      # Use 'end' to interpolate based on 'start' (mutually exclusive with 'increment')
+      end: 5000
+
+      # (optional) Round setting
+      # truncate: Truncate decimal values
+      # round: Round to 4 decimal places
+      roundSetting: 'truncate'
+
+      # Use 'expression' for a custom expression (mutually exclusive to all other 'value' fields)
+      # Available expression variables are:
+      #   level: The calculated tower level (based on 'startingAt' and 'forEvery')
+      #   level_count: The total number of levels
+      #   layer: The current layer
+      #   layer_count: The total number of layers
+      #expression: "0 if layer < 2 else 15 + 45 * ((layer - 2) / 247)"    
+
+atLayer:
+  0: M104 S215 ;Set hotend to nominal value
+  

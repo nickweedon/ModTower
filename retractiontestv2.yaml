@@ -1,0 +1,20 @@
+
+# From Extensions -> Part for Calibration -> Add Retract Tower
+# Scaled to %150
+everyLayer:
+  - startingAt: 3
+    forEvery: 16
+    do: |-
+     M117 Level: {level}, Hotend: {value}C
+     M104 S{value} ;Set hotend temp
+    value:
+      # Can be one of:
+      # high: For uneven level count, set the midpoint higher
+      # low: For uneven level count, set the midpoint lower
+      # off (default): No midpoint, start applying increment from the bottom
+      midpointSetting: low
+      start: 215
+      increment: 5
+atLayer:
+  0: M104 S215 ;Set hotend to nominal value
+  
